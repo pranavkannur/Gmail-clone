@@ -1,15 +1,38 @@
 import React from 'react';
-import './App.css'
-import Navbar from './components/Navbar'
-import Sidebar from './components/Sidebar';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import './App.css';
+import Navbar from './components/Navbar';
+// import Sidebar from './components/Sidebar';
+import Body from './components/Body';
+// import Inbox from './components/Inbox';
+import Mail from './components/Mail';
+import Index from './components/Index';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Body />,
+    children: [
+      {
+        path: "/",
+        element: <Index />
+      },
+      {
+        path: "/mail/:id",
+        element: <Mail />
+      },
+    ]
+  }
+]);
 
 function App() {
   return (
-    <div >
-      <Navbar/>
-      <Sidebar/>
-    </div>
-  ) 
+    <div>
+      <Navbar />
+      <RouterProvider router={router} />
+    </div>  
+    
+  );
 }
 
-export default App
+export default App;
