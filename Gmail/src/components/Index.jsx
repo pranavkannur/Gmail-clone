@@ -4,6 +4,7 @@ import { FaCaretDown, FaUserFriends } from 'react-icons/fa'
 import { IoMdMore, IoMdRefresh } from 'react-icons/io'
 import { GoTag } from 'react-icons/go'
 import { useState } from 'react'
+import Massages from './Massages'
 
 const mailType = [
   {
@@ -45,7 +46,7 @@ const Index = () => {
               return (
                 <button
                   key={index}
-                  className={`flex items-center gap-5 p-4' ${mailTypeSelected == index ? 'border-b-4 border-b-blue-600 text-blue-600' : 'border-b-4 border-b-transparent'} flex items-center gap-5 p-4 w-52 hover:bg-gray-100`}
+                  className={`flex items-center gap-5 p-4' ${mailTypeSelected == index ? 'border-b-4 border-b-blue-600 text-blue-600' : 'border-b-4 border-b-transparent'}flex items-center gap-5 p-4 w-52 hover:bg-gray-100`}
                   onClick={() => setMailTypeSelected(index)}
                 >
                   {item.icon}
@@ -55,7 +56,7 @@ const Index = () => {
             })
           }
         </div>
-        
+        <Massages />
       </div>
     </div>
   )

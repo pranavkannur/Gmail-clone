@@ -37,7 +37,7 @@ const SidebarItems = [
 const Sidebar = () => {
     return (
         <div>
-            <div className='w-[15%]'>
+            <div className='w-[100%]'>
                 <div className='p-3'>
                     <button className='flex items-center gap-2 p-4 rounded-2xl hover:shadow-md bg-[#C2E7FF] '>
                         <LuPencil size={'24px'} />

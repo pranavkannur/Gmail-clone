@@ -2,11 +2,10 @@ import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
-// import Sidebar from './components/Sidebar';
 import Body from './components/Body';
-// import Inbox from './components/Inbox';
 import Mail from './components/Mail';
 import Index from './components/Index';
+
 
 const router = createBrowserRouter([
   {

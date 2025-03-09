@@ -20,7 +20,7 @@ const Navbar = () => {
                     <h1 className="text-2xl text-gray-500 font-medium">Gmail</h1>
                 </div>
             </div>
-            <div className="md:block hidden w-[50%] mr-60">
+            <div className=" lg:block lg:w-[50%] md:block md:w-[30%] hidden mr-60">
                 <div className="flex items-center bg-[#EAF2FB] py-3 px-2 rounded-full">
                     <IoIosSearch size={"24"} className="text-gray-700" />
                     <input
