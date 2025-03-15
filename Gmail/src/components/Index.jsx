@@ -1,5 +1,5 @@
 import React from 'react'
-import { MdCropSquare, MdInbox } from 'react-icons/md'
+import { MdCropSquare, MdInbox, MdKeyboardArrowLeft,MdKeyboardArrowRight  } from 'react-icons/md'
 import { FaCaretDown, FaUserFriends } from 'react-icons/fa'
 import { IoMdMore, IoMdRefresh } from 'react-icons/io'
 import { GoTag } from 'react-icons/go'
@@ -38,6 +38,10 @@ const Index = () => {
             <IoMdMore size={"20px"} />
           </div>
         </div>
+        <div className='flex items-center gap-2'>
+                    <button className='hover:rounded-bl-full hover:bg-gray-100'><MdKeyboardArrowLeft size={'20px'} /></button>
+                    <button className='hover:rounded-bl-full hover:bg-gray-100'><MdKeyboardArrowRight size={'20px'} /></button>
+                </div>
       </div>
       <div className="h-[90vh] overflow-auto">
         <div className="flex items-center gap-1">
