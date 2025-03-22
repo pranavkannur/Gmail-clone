@@ -20,6 +20,26 @@ const router = createBrowserRouter([
         element: <Index />
       },
       {
+        path: "/starred",
+        element: <Index />
+      },
+      {
+        path: "/snoozed",
+        element: <Index />
+      },
+      {
+        path: "/sent",
+        element: <Index />
+      },
+      {
+        path: "/drafts",
+        element: <Index />
+      },
+      {
+        path: "/more",
+        element: <Index />
+      },
+      {
         path: "/mail/:id",
         element: <Mail />
       },

@@ -8,42 +8,50 @@ import { MdDrafts } from "react-icons/md";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleCompose } from '../redux/mailSlice';
+import { useNavigate } from 'react-router-dom';
 
 const SidebarItems = [
     {
         icon: <MdInbox size={'24px'} />,
         text: "Inbox",
-        count: "inbox"
+        count: "inbox",
+        path: "/"
     },
     {
         icon: <IoMdStar size={'24px'} />,
         text: "Starred",
-        count: "starred"
+        count: "starred",
+        path: "/starred"
     },
     {
         icon: <MdOutlineWatchLater size={'24px'} />,
         text: "Snoozed",
-        count: null
+        count: null,
+        path: "/snoozed"
     },
     {
         icon: <TbSend2 size={'24px'} />,
         text: "Sent",
-        count: "sent"
+        count: "sent",
+        path: "/sent"
     },
     {
         icon: <MdDrafts size={'24px'} />,
         text: "Drafts",
-        count: null
+        count: null,
+        path: "/drafts"
     },
     {
         icon: <RiArrowDownSLine size={'24px'} />,
         text: "More",
-        count: null
+        count: null,
+        path: "/more"
     },
 ];
 
 const Sidebar = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const mails = useSelector(state => state.mail.mails);
     
     const handleCompose = () => {
@@ -79,7 +87,11 @@ const Sidebar = () => {
                             const count = item.count ? getMailCount(item.count) : null;
                             
                             return (
-                                <div key={index} className='flex items-center justify-between pl-4 pr-3 py-2 rounded-r-full hover:cursor-pointer hover:bg-gray-200'>
+                                <div 
+                                    key={index} 
+                                    className='flex items-center justify-between pl-4 pr-3 py-2 rounded-r-full hover:cursor-pointer hover:bg-gray-200'
+                                    onClick={() => navigate(item.path)}
+                                >
                                     <div className='flex items-center gap-4'>
                                         {item.icon}
                                         <span>{item.text}</span>
