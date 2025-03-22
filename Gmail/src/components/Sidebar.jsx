@@ -1,45 +1,74 @@
-import React from 'react'
-import { IoMdStar } from 'react-icons/io'
-import { LuPencil } from 'react-icons/lu'
-import { MdOutlineWatchLater } from 'react-icons/md'
-import { TbSend2 } from 'react-icons/tb'
+import React from 'react';
+import { IoMdStar } from 'react-icons/io';
+import { LuPencil } from 'react-icons/lu';
+import { MdOutlineWatchLater } from 'react-icons/md';
+import { TbSend2 } from 'react-icons/tb';
 import { MdInbox } from "react-icons/md";
 import { MdDrafts } from "react-icons/md";
 import { RiArrowDownSLine } from "react-icons/ri";
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleCompose } from '../redux/mailSlice';
 
 const SidebarItems = [
     {
         icon: <MdInbox size={'24px'} />,
-        text: "Inbox"
+        text: "Inbox",
+        count: "inbox"
     },
     {
         icon: <IoMdStar size={'24px'} />,
-        text: "Starred"
+        text: "Starred",
+        count: "starred"
     },
     {
         icon: <MdOutlineWatchLater size={'24px'} />,
-        text: "Snoozed"
+        text: "Snoozed",
+        count: null
     },
     {
         icon: <TbSend2 size={'24px'} />,
-        text: "Sent"
+        text: "Sent",
+        count: "sent"
     },
     {
         icon: <MdDrafts size={'24px'} />,
-        text: "Drafts"
+        text: "Drafts",
+        count: null
     },
     {
         icon: <RiArrowDownSLine size={'24px'} />,
-        text: "More"
+        text: "More",
+        count: null
     },
-]
+];
 
 const Sidebar = () => {
+    const dispatch = useDispatch();
+    const mails = useSelector(state => state.mail.mails);
+    
+    const handleCompose = () => {
+        dispatch(toggleCompose());
+    };
+    
+    const getMailCount = (type) => {
+        if (type === "inbox") {
+            return mails.filter(mail => mail.folder === "inbox").length;
+        } else if (type === "starred") {
+            return mails.filter(mail => mail.starred).length;
+        } else if (type === "sent") {
+            return mails.filter(mail => mail.folder === "sent").length;
+        }
+        return 0;
+    };
+
     return (
-        <div>
+        <div className="w-64 pr-3">
             <div className='w-[100%]'>
                 <div className='p-3'>
-                    <button className='flex items-center gap-2 p-4 rounded-2xl hover:shadow-md bg-[#C2E7FF] '>
+                    <button 
+                        className='flex items-center gap-2 p-4 rounded-2xl hover:shadow-md bg-[#C2E7FF]'
+                        onClick={handleCompose}
+                    >
                         <LuPencil size={'24px'} />
                         Compose
                     </button>
@@ -47,10 +76,17 @@ const Sidebar = () => {
                 <div className='text-gray-500'>
                     {
                         SidebarItems.map((item, index) => {
+                            const count = item.count ? getMailCount(item.count) : null;
+                            
                             return (
-                                <div key={index} className='flex items-center gap-4 pl-4 py-1 rounded-full hover:cursor-pointer hover:bg-gray-200'>
-                                    {item.icon}
-                                    {item.text}
+                                <div key={index} className='flex items-center justify-between pl-4 pr-3 py-2 rounded-r-full hover:cursor-pointer hover:bg-gray-200'>
+                                    <div className='flex items-center gap-4'>
+                                        {item.icon}
+                                        <span>{item.text}</span>
+                                    </div>
+                                    {count > 0 && (
+                                        <span className="text-sm font-medium">{count}</span>
+                                    )}
                                 </div>
                             )
                         })
@@ -58,7 +94,7 @@ const Sidebar = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default Sidebar
+export default Sidebar;
